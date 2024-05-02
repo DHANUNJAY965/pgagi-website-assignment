@@ -1,4 +1,4 @@
-"use client";
+
 import React, { useEffect, useState } from "react";
 import { PopupButton } from "react-calendly";
 
@@ -14,13 +14,15 @@ const Calendlylink = () => {
 
     return (
         <div className="App" id="root">
-           <div className="bg-primary hover:bg-blue-800 text-white font-bold py-4 px-8 rounded-lg inline-flex items-center gap-3 shadow-lg transition duration-300 ease-in-out transform hover:-translate-y-1 cursor-pointer">
+           <div className="box-border absolute w-116 h-35 left-1073 top-98 border border-solid border-blue-600 rounded-10">
+
     {rootElement && (
         <PopupButton
             url={url}
             rootElement={rootElement}
-            text="Book a Call"
+            text="Contact us"
         ></PopupButton>
+        
     )}
 </div>
 
@@ -29,4 +31,7 @@ const Calendlylink = () => {
 };
 
 export default Calendlylink;
+
+
+
 

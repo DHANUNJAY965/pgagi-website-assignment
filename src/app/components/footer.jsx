@@ -1,17 +1,18 @@
 // Footer.jsx
-import React from "react";
-import Image from "next/image";
-import Link from 'next/link';
+
+// import Image from "next/image";
+// import Link from 'next/link';
+import hi from "../images/pgagi.png"
 
 const Footer = () => {
   return (
     <>
-      <footer className="relative bg-blueGray-200 pt-8 pb-6 border-t-2 w-full md:text-center ">
+      <footer className="relative bg-black bg-opacity-5 pt-8 pb-6 border-t-2 w-full md:text-center ">
         <div className="container mx-auto px-4 hidden sm:block">
           <div className="flex flex-wrap text-left lg:text-left">
             <div className="w-full lg:w-6/12 px-4">
               <div className="flex items-center ">
-                <Image src="/images/pgagi.png" alt="Company logo" className="h-12 -ml-2 object-contain" width={50} height={50} />
+                <img src={hi} alt="Company logo" className="h-12 -ml-2 object-contain" width={50} height={50} />
                 <h4 className="text-3xl font-extrabold text-gray-700 whitespace-nowrap">PG-AGI</h4>
               </div>
               <h5 className="text-md mt-6 mb-5 text-gray-600 whitespace-nowrap">
@@ -71,9 +72,9 @@ const Footer = () => {
                   <span className="block uppercase text-blueGray-500 text-sm font-semibold mb-2 whitespace-nowrap">Useful Links</span>
                   <ul className="list-unstyled">
                   <li>
-  <Link href="/aboutus" className="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm whitespace-nowrap">
+  <a href="/aboutus" className="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm whitespace-nowrap">
     About Us
-  </Link>
+  </a>
 </li>
 
 
@@ -123,7 +124,7 @@ const Footer = () => {
         <div className="container mx-auto px-4 sm:hidden text-center">
           <div className="flex flex-col items-center">
             <div className="mb-4 flex justify-center items-center">
-              <Image src="/images/pgagi.png" alt="Company logo" className="h-12 object-contain" width={50} height={50} />
+              <img src="/images/pgagi.png" alt="Company logo" className="h-12 object-contain" width={50} height={50} />
               <h4 className="text-3xl font-extrabold text-gray-700 whitespace-nowrap">PG-AGI</h4>
             </div>
             <h5 className="text-md mb-5 text-gray-600 whitespace-nowrap">
@@ -188,9 +189,9 @@ const Footer = () => {
             <span className="block uppercase text-blueGray-500 text-sm font-semibold mb-2 whitespace-nowrap">Useful Links</span>
             <ul className="list-unstyled">
             <li>
-  <Link href="/aboutus" className="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm whitespace-nowrap">
+  <a href="/aboutus" className="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm whitespace-nowrap">
     About Us
-  </Link>
+  </a>
 </li>
                     <li>
                       <a className="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm whitespace-nowrap">Blog</a>

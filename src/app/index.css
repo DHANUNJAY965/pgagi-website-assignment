@@ -1,0 +1,37 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+.animreq {
+    animation-name: myAnimation;
+    animation-iteration-count: infinite;
+    animation-duration: 4s;
+    animation-delay: 1s; /* Add delay */
+}
+
+@keyframes myAnimation {
+    0% {
+        transform: rotate(0deg);
+    }
+    50% {
+        transform: rotate(360deg);
+    }
+}
+@keyframes custom-ping {
+    0% {
+      transform: translate(-50%, -50%) scale(0.8);
+      opacity: 0.5;
+    }
+    50% {
+      transform: translate(-50%, -50%) scale(1.2);
+      opacity: 1;
+    }
+    100% {
+      transform: translate(-50%, -50%) scale(0.8);
+      opacity: 0.5;
+    }
+  }
+  
+  .animate-custom-ping {
+    animation: custom-ping 2s ease-in-out 6s infinite;
+  }
+  

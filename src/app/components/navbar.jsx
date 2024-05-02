@@ -1,187 +1,210 @@
-"use client"
 
-import React, { useState } from 'react';
-import Calendlylink from '../buttons/callbutton';
-import Image from 'next/image';
-import Link from 'next/link';
 
+import React, { useState } from "react";
+import Calendlylink from "../buttons/callbutton";
+import hi from "../images/pgagi.png"
+// import Link from "next/link";
+import { useNavigate } from "react-router-dom";
 
 export default function Navbar() {
+  const [showIndustries, setShowIndustries] = useState(false);
+  const [showAboutUs, setShowAboutUs] = useState(false);
+  const [showSolutions, setShowSolutions] = useState(false);
+  const [showAIResources, setShowAIResources] = useState(false);
+  const [selectedOption, setSelectedOption] = useState(null);
+  const navi = useNavigate();
 
-    
-    const [showIndustries, setShowIndustries] = useState(false);
-    const [showAboutUs, setShowAboutUs] = useState(false);
-    const [showSolutions, setShowSolutions] = useState(false);
-    const [showAIResources, setShowAIResources] = useState(false);
-    const [selectedOption, setSelectedOption] = useState(null);
+  const toggleIndustries = () => {
+    setShowIndustries(!showIndustries);
+    setShowAboutUs(false); // Close About Us section
+    setShowSolutions(false); // Close Solutions section
+    setShowAIResources(false); // Close AI Resources section
+    setSelectedOption("Industries");
+  };
 
-    const toggleIndustries = () => {
-        setShowIndustries(!showIndustries);
-        setShowAboutUs(false); // Close About Us section
-        setShowSolutions(false); // Close Solutions section
-        setShowAIResources(false); // Close AI Resources section
-        setSelectedOption('Industries');
-    };
+  const toggleAboutUs = () => {
+    if (!showAboutUs) {
+      setShowAboutUs(true);
+      setShowIndustries(false); // Close Industries section
+      setShowSolutions(false); // Close Solutions section
+      setShowAIResources(false); // Close AI Resources section
+      setSelectedOption("What we do");
+    }
+  };
 
-    const toggleAboutUs = () => {
-        if (!showAboutUs) {
-            setShowAboutUs(true);
-            setShowIndustries(false); // Close Industries section
-            setShowSolutions(false); // Close Solutions section
-            setShowAIResources(false); // Close AI Resources section
-            setSelectedOption('About Us');
-        }
-    };
-    
+  const toggleSolutions = () => {
+    setShowSolutions(!showSolutions);
+    setShowIndustries(false); // Close Industries section
+    setShowAboutUs(false); // Close About Us section
+    setShowAIResources(false); // Close AI Resources section
+    setSelectedOption("What we think");
+  };
 
-    const toggleSolutions = () => {
-        setShowSolutions(!showSolutions);
-        setShowIndustries(false); // Close Industries section
-        setShowAboutUs(false); // Close About Us section
-        setShowAIResources(false); // Close AI Resources section
-        setSelectedOption('Solutions');
-    };
+  const toggleAIResources = () => {
+    setShowAIResources(!showAIResources);
+    setShowIndustries(false); // Close Industries section
+    setShowAboutUs(false); // Close About Us section
+    setShowSolutions(false); // Close Solutions section
+    setSelectedOption("Who we are");
+  };
 
-    const toggleAIResources = () => {
-        setShowAIResources(!showAIResources);
-        setShowIndustries(false); // Close Industries section
-        setShowAboutUs(false); // Close About Us section
-        setShowSolutions(false); // Close Solutions section
-        setSelectedOption('AI resources');
-
-
-    };
-
-
-   
-   
-
-
-
-
-
-
-
-    return (
+  return (
+    <div className="sticky top-0 z-20"
+    style={{background:'rgba(0, 0, 0, 0.801)'}}>
+      {/* className="sticky top-0 z-[1]" */}
+      {/* Thin horizontal blue line */}
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "30px",
+          backgroundColor: "#14213d",
+          width: "100%",
+        }}
+      >
         
-        
-             <div>
-            {/* Thin horizontal blue line */}
-            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '30px', backgroundColor: '#14213d', width: '100%' }}>
-    <span style={{ marginRight: '10px' }} className='text-white'>AI Calling Agent</span>
-    <div>
-        <Link href="/aboutus" style={{ fontWeight: 'bold' }} className='text-white'>Learn more</Link>
-    </div>
-</div>
-            
-            <div className="bg-white border-b-2 h-24 hidden md:flex md:justify-evenly md:px-8 lg:px-12 xl:px-24 ">
-                {/* Logo */}
-                <div className='flex items-center justify-center xl:pl-16 md:pl-10'>
-                    <div className='flex-shrink-0  ' >
-                        <Image src="/images/pgagi.png" alt="Company logo" className="h-14 object-contain" width={60} height={60}/>
-                    </div>
-                    <div className='text-3xl font-bold ml-2'>PG-AGI</div>
-                </div>
-                {/* Navbar links */}
-                <div className="header-links contents font-semibold text-base lg:text-base ">
-                    <ul className="flex items-center ml-4  lg:ml-5 xl:ml-2 lg:mr-8">
-                    <li className="p-2.5 xl:p-6 text-center">
-  <a className="text-decoration-none">
-    <span>Our Projects</span>
-  </a>
-</li>
-                        <li className="p-2.5 xl:p-6">
-                            <button onMouseEnter={() => toggleSolutions('Solutions')}  className="focus:outline-none flex items-center">
-                                <span className={selectedOption === 'Solutions' ? 'text-[#14213d]' : 'hover:text-[#14213d] cursor-pointer'}>Solutions</span>
-                                <Image src="/images/dropdown.svg" width={20} height={20} alt="dropdown" className="ml-1 w-4 h-4" />
-                            </button>
-                        </li>
-                        <li className="p-2.5 xl:p-6">
-                            <button onMouseEnter={() => toggleIndustries('Industries')} className="focus:outline-none flex items-center">
-                                <span className={selectedOption === 'Industries' ? 'text-[#14213d]' : 'hover:text-[#14213d] cursor-pointer'}>Industries</span>
-                                <Image src="/images/dropdown.svg" width={20} height={20} alt="dropdown" className="ml-1 w-4 h-4" />
-                            </button>
-                        </li>
-                        <li className="p-2.5 xl:p-6">
-                            <button onMouseEnter={() => toggleAboutUs('About Us')}  className="focus:outline-none flex items-center">
-                                <span className={selectedOption === 'About Us' ? 'text-[#14213d]' : 'hover:text-[#14213d] cursor-pointer'}>About Us</span>
-                                <Image src="/images/dropdown.svg" width={20} height={20} alt="dropdown" className="ml-1 w-4 h-4" />
-                            </button>
-                        </li>
-                        <li className="p-2.5 xl:p-6">
-                            <button onMouseEnter={() => toggleAIResources('AI Resources')}  onClick={toggleAIResources} className="focus:outline-none flex items-center">
-                                <span className={selectedOption === 'AI resources' ? 'text-[#14213d]' : 'hover:text-[#14213d] cursor-pointer'}>AI Resources</span>
-                                <Image src="/images/dropdown.svg" width={20} height={20} alt="dropdown" className="ml-1 w-4 h-4" />
-                            </button>
-                        </li>
-                    </ul>
-                </div>
-                {/* Search bar and button */}
-                <div className=" md: lg:-ml-12 flex items-center gap-5 ">
-                    <form action="" className="relative mx-auto w-max">
-                        <input type="search"
-                            className=" peer cursor-pointer relative z-10 h-12 w-12 rounded-full border bg-transparent pl-12 outline-none focus:w-full focus:cursor-text focus:border-primary focus:pl-16 focus:pr-4" />
-                        <svg xmlns="http://www.w3.org/2000/svg" className="ml-0.5 absolute inset-y-0 my-auto h-8 w-12 border-r border-transparent stroke-gray-500 px-3.5 peer-focus:border-primary peer-focus:stroke-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                        </svg>
-                    </form>
+        <span style={{ marginRight: "10px" }} className="text-white">
+          AI Calling Agent
+        </span>
+        <div>
+          <a
+            href="/aboutus"
+            style={{ fontWeight: "bold" }}
+            className="text-white"
+          >
+            Learn more
+          </a>
+        </div>
+      </div>
+
+      <div className=" border-b-2 h-24 hidden md:flex md:justify-evenly md:px-8 lg:px-12 xl:px-24">
+        {/* Logo */}
+        <div className="flex items-center justify-center xl:pl-16 md:pl-10">
+          <div className="flex-shrink-0  ">
+            <img
+              src={hi}
+              alt="Company logo"
+              className="h-14 object-contain cursor-pointer hover:border-[#14213d]"
+              width={60}
+              height={60}
+              onClick={()=>
+              {
+                navi("/")
+              }}
+            />
+          </div>
+          <div className="text-3xl font-bold ml-2">PG-AGI</div>
+        </div>
+        {/* Navbar links */}
+        <div className="header-links contents font-semibold text-base lg:text-base text-white">
+          <ul className="flex items-center ml-4  lg:ml-5 xl:ml-2 lg:mr-8">
+            <li className="p-2.5 xl:p-6 text-center"></li>
+            <li className="p-2.5 xl:p-6">
+              <button
+                onMouseEnter={() => toggleSolutions("Solutions")}
+                className="focus:outline-none flex items-center"
+              >
+                <span
+                  className={
+                    selectedOption === "Solutions"
+                      ? "text-[#14213d] "
+                      : "cursor-pointer "
+                  }
+                >
+                  What we do
+                </span>
+              </button>
+            </li>
+            <li className="p-2.5 xl:p-6">
+              
+                <span
+                  className="cursor-pointer"
+                  onClick={()=>
+                    navi("/think")
+                  }
+                >
+                  What we think
+                </span>
+              
+            </li>
+            <li className="p-2.5 xl:p-6">
+              <button
+                onMouseEnter={() => toggleAboutUs("About Us")}
+                className="focus:outline-none flex items-center"
+              >
+                <span
+                  className=''
+                >
+                  who we are
+                </span>
+              </button>
+            </li>
+            <li className="p-2.5 xl:p-6 cursor-pointer ">
+              <span className="box-border absolute w-[116] h-[35] left-1073 top-14 border border-solid hover:bg-blue-600 border-blue-600 rounded-md p-2">
+                Contact us
+              </span>
+            </li>
+          </ul>
+        </div>
+        {/* Search bar and button */}
+        {/* <div >
+                    
                     <Calendlylink/>
+                </div> */}
+      </div>
+
+      {/* AI Resources Section */}
+      {showAIResources && (
+        <div
+          className="bg-white border-b-2 hidden md:flex md:justify-evenly md:px-8 lg:px-12 xl:px-24 py-6"
+          onMouseLeave={() => setShowAIResources(false)}
+        >
+          <div
+            className="text-gray-600 body-font mt-0 flex flex-wrap justify-center"
+            style={{ width: "80%", height: "280px", overflow: "hidden" }}
+          >
+           
+            <div
+              className="py-6 px-6 flex items-start w-full md:w-1/3"
+              style={{ position: "relative" }}
+            >
+              <div
+                className="h-full flex-grow flex flex-col"
+                style={{ width: "100%", height: "100%" }}
+              >
+                <div
+                  className="hover:bg-[#F5F6FC]  mb-6 group"
+                  style={{ width: "100%" }}
+                >
+                  <div className="flex items-center">
+                    <h1
+                      className="title-font text-md font-bold text-gray-600 hover:text-black     mb-3"
+                      style={{ marginRight: "10px" }}
+                    >
+                      {" "}
+                      Blog
+                    </h1>
+                    <img
+                      src="/images/rightarrow.png"
+                      alt="Arrow"
+                      width={20}
+                      height={20}
+                      style={{ transition: "transform 0.1s" }}
+                      className="group-hover:translate-x-1"
+                    />
+                  </div>
+                  <p className="text-gray-600 hover:text-black    text-sm leading-relaxed mb-5">
+                    Articles and Stories
+                  </p>
                 </div>
+                
+              </div>
+              {/* Vertical Line */}
+              {/* <div className="absolute h-full w-px bg-gray-200 top-0 right-0"></div> */}
             </div>
-
-            {/* AI Resources Section */}
-            {showAIResources && (
-                <div className="bg-white border-b-2 hidden md:flex md:justify-evenly md:px-8 lg:px-12 xl:px-24 py-6" onMouseLeave={() => setShowAIResources(false)}>
-                    <div className="text-gray-600 body-font mt-0 flex flex-wrap justify-center" style={{ width: '80%', height: '280px', overflow: 'hidden' }}>
-                        {/* <div className="py-6 px-6 flex items-start  w-full md:w-1/3" style={{ position: 'relative' }}>
-                            <div className="h-full flex-grow hover:bg-[#F5F6FC]  mb-6 group" style={{ width: '100%', height: '100%' }}>
-                                <div className="flex items-center">
-                                    <h1 className="title-font text-md font-bold text-gray-600 hover:text-black     mb-3">AI+ eBook</h1>
-                                    <img
-                                        src="/images/rightarrow.png"
-                                        alt="Arrow"
-                                        style={{ width: '20px', height: '20px', transition: 'transform 0.1s' }}
-                                        className='group-hover:translate-x-1'
-                                    />
-                                </div>
-                                <p className="text-gray-600 hover:text-black    text-sm leading-relaxed mb-5">Maximize your AI knowledge</p>
-                            </div>
-                        </div> */}
-                        <div className="py-6 px-6 flex items-start w-full md:w-1/3" style={{ position: 'relative' }}>
-                            <div className="h-full flex-grow flex flex-col" style={{ width: '100%', height: '100%' }}>
-                                <div className='hover:bg-[#F5F6FC]  mb-6 group' style={{ width: '100%' }}>
-                                    <div className="flex items-center">
-                                        <h1 className="title-font text-md font-bold text-gray-600 hover:text-black     mb-3" style={{ marginRight: '10px' }}> Blog</h1>
-                                        <Image
-    src="/images/rightarrow.png"
-    alt="Arrow"
-    width={20}
-    height={20}
-    style={{ transition: 'transform 0.1s' }}
-    className='group-hover:translate-x-1'
-/>
-
-                                    </div>
-                                    <p className="text-gray-600 hover:text-black    text-sm leading-relaxed mb-5">Articles and Stories</p>
-                                </div>
-                                {/* <div className='hover:bg-[#F5F6FC]  mb-6 group' style={{ width: '100%' }}>
-                                    <div className="flex items-center">
-                                        <h1 className="title-font text-md font-bold text-gray-600 hover:text-black     mb-3" style={{ marginRight: '10px' }}>See All Downloads</h1>
-                                        <img
-                                            src="/images/rightarrow.png"
-                                            alt="Arrow"
-                                            style={{ width: '20px', height: '20px', transition: 'transform 0.1s' }}
-                                            className='group-hover:translate-x-1'
-                                        />
-                                    </div>
-                                    <p className="text-gray-600 hover:text-black    text-sm leading-relaxed mb-5">UX Templates,checklist & Guides</p>
-                                </div> */}
-                            </div>
-                            {/* Vertical Line */}
-                            {/* <div className="absolute h-full w-px bg-gray-200 top-0 right-0"></div> */}
-                        </div>
-                        <div className="py-6 px-6 flex items-start hover:bg-[#F5F6FC]  mb-6 group w-full md:w-1/3">
-                            {/* <div className="h-full flex-grow" style={{ display: 'flex', flexDirection: 'column', width: '100%', height: '100%' }}>
+            <div className="py-6 px-6 flex items-start hover:bg-[#F5F6FC]  mb-6 group w-full md:w-1/3">
+              {/* <div className="h-full flex-grow" style={{ display: 'flex', flexDirection: 'column', width: '100%', height: '100%' }}>
                                 <div className="flex items-center">
                                     <h1 className="title-font text-md font-bold text-gray-600 hover:text-black     mb-3" style={{ marginRight: '10px' }}>AI pilot</h1>
                                     <img
@@ -198,170 +221,141 @@ export default function Navbar() {
                                     </video>
                                 </div>
                             </div> */}
-                        </div>
-                    </div>
-                </div>
-            )}
-
-            {showSolutions && (
-                <div className="bg-white border-b-2 hidden md:flex md:justify-evenly md:px-8 lg:px-12 xl:px-24 py-4" onMouseLeave={() => setShowSolutions(false)}>
-                    <div className="text-gray-600 body-font mt-0 flex flex-wrap justify-center" style={{ width: '80%', maxHeight: '515px', overflowY: 'auto' }}>
-                        <div className="py-4 px-4 flex items-start w-full md:w-1/3 relative">
-                            <div className="h-full flex-grow">
-                                <div className='hover:bg-[#F5F6FC]  mb-6 group mb-6'>
-                                    <div className="flex items-center">
-                                        <h1 className="title-font text-md font-bold text-gray-600 hover:text-black     mb-2 mr-2">Create MVP</h1>
-                                        <Image
-    src="/images/rightarrow.png"
-    alt="Arrow"
-    width={20}
-    height={20}
-    style={{ transition: 'transform 0.1s' }}
-    className='group-hover:translate-x-1'
-/>
-
-                                    </div>
-                                    <p className="text-gray-600 hover:text-black    text-sm leading-relaxed mb-4">Create a standout AI-powered prototype that impresses investors with seamless functionality and cutting-edge technology..</p>
-                                </div>
-                                <div className='hover:bg-[#F5F6FC]  mb-6 group'>
-    <div className="flex items-center">
-        <h1 className="title-font text-md font-bold text-gray-600 hover:text-black mb-2 mr-2">Improve Product</h1>
-        <Image
-    src="/images/rightarrow.png"
-    alt="Arrow"
-    width={20}
-    height={20}
-    style={{ transition: 'transform 0.1s' }}
-    className='group-hover:translate-x-1'
-/>
-
-    </div>
-    <p className="text-gray-600 hover:text-black text-sm leading-relaxed mb-4">Enhance your product with AI integration for optimized processes, improved user experience, and smart features, all without adding complexity.</p>
-</div>
-
-                                <div className='hover:bg-[#F5F6FC]   mb-6 group'>
-                                    <div className="flex items-center">
-                                        <div className="flex items-center">
-                                            <h1 className="title-font text-md font-bold text-gray-600 hover:text-black     mb-2 mr-2">AI Research</h1>
-                                            <Image
-    src="/images/rightarrow.png"
-    alt="Arrow"
-    width={20}
-    height={20}
-    style={{ transition: 'transform 0.1s' }}
-    className='group-hover:translate-x-1'
-/>
-
-                                        </div>
-                                    </div>
-                                    <p className="text-gray-600 hover:text-black     text-sm leading-relaxed mb-4">Gain deeper insights with AI-driven research, accurately predicting market behaviors and user preferences through advanced analytics.</p>
-                                </div>
-                            </div>
-                            <div className="absolute h-full w-px bg-gray-200 top-0 right-0"></div> {/* Vertical Line */}
-                        </div>
-                        <div className="py-4 px-4 flex items-start w-full md:w-1/3 relative">
-                            <div className="h-full flex-grow flex flex-col">
-                                <div className='hover:bg-[#F5F6FC]  mb-6 group '>
-                                    <div className="flex items-center">
-                                        <h1 className="title-font text-md font-bold text-gray-600 hover:text-black     mb-2 mr-2">AI Calling Agent Subscription:</h1>
-                                        <Image
-    src="/images/rightarrow.png"
-    alt="Arrow"
-    width={20}
-    height={20}
-    style={{ transition: 'transform 0.1s' }}
-    className='group-hover:translate-x-1'
-/>
-
-                                    </div>
-                                    <ul className="list-disc pl-0 text-gray-600 hover:text-black">
-                                        <li className="flex items-center mb-2" style={{ listStyle: 'none' }}>
-                                        <Image src="/images/tick.png" alt="Tick" width={20} height={20} className="mr-2" />
-                                            <span className='text-sm text-gray-600 hover:text-black '>Unlimited AI Calls:</span>
-                                        </li>
-                                        <li className="flex items-center mb-2" style={{ listStyle: 'none' }}>
-                                        <Image src="/images/tick.png" alt="Tick" width={20} height={20} className="mr-2" />
-                                            <span className='text-sm text-gray-600 hover:text-black '>Humanized Interactions:</span> 
-                                        </li>
-                                        <li className="flex items-center mb-2" style={{ listStyle: 'none' }}>
-                                        <Image src="/images/tick.png" alt="Tick" width={20} height={20} className="mr-2" />
-
-                                            <span className='text-sm text-gray-600 hover:text-black '>Seamless CRM Integration:
-</span>
-                                        </li>
-                                        <li className="flex items-center mb-2" style={{ listStyle: 'none' }}>
-                                        <Image src="/images/tick.png" alt="Tick" width={20} height={20} className="mr-2" />
-                                            <span className='text-sm text-gray-600 hover:text-black '>Advanced Analytics & Insights with AI/ ML:
-</span>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <img src="https://adamfard.com/static/ux-design-agency-4-f773052c59837895521f19104191f67b.jpg" alt="Design Stream Subscription" className="w-full h-auto mb-4" style={{ maxHeight: 'calc(100% - 100px)' }} />
-                            </div>
-                            <div className="absolute h-full w-px bg-gray-200 top-0 right-0"></div> {/* Vertical Line */}
-                        </div>
-                        <div className="py-4 px-4 flex items-start w-full md:w-1/3 relative">
-                            <div className="h-auto flex-grow">
-                                <div className='hover:bg-[#F5F6FC]   group mb-6'>
-                                    <div className="flex items-center">
-                                        <h1 className="title-font text-md font-bold text-gray-600 hover:text-black     mb-2 mr-2">AI Strategy & Optimization Review:
-</h1>
-<Image
-    src="/images/rightarrow.png"
-    alt="Arrow"
-    width={20}
-    height={20}
-    style={{ transition: 'transform 0.1s' }}
-    className='group-hover:translate-x-1'
-/>
-
-                                    </div>
-                                    <p className="text-gray-600 hover:text-black    text-sm leading-relaxed mb-4 text-md"><span className='font-bold'>Comprehensive AI Assessment:</span> Obtain an extensive 60+ page analysis of your current AI capabilities and future potential, identifying key areas for immediate improvement and strategic growth for the developers.
-
-</p>
-                                </div>
-                                <img src="https://adamfard.com/static/ux-review-report-b4e2fc39a551aedd6130fd9020550e6b.png" alt="Solution 4 Image" className="w-full h-auto mb-4" style={{ maxHeight: 'calc(100% - 100px)' }} />
-                            </div>
-                            
-                        </div>
-                    </div>
-                </div>
-            )}
-
-            {/* Industries Section */}
-            {showIndustries && (
-  <div className="bg-white border-b-2 hidden md:flex md:flex-wrap md:justify-evenly md:px-8 lg:px-12 xl:px-24" onMouseLeave={() => setShowIndustries(false)}>
-    <section className="text-gray-600 body-font mt-0 grid grid-cols-3 gap-x-40 gap-y-0 justify-center">
-      {[
-        'Fintech', 'Chemical', 'SaaS', 'Edtech', 'Health',
-        'Commerce', 'Security', 'Blockchain', 'Gaming',
-        'Agritech', 'Proptech', 'Insurtech', 'Biotech', 'Cleantech',
-        'Mobility', 'Foodtech', 'Medtech', 'Legaltech'
-      ].map((industry, index) => (
-        <div key={index} className="py-1 px-4 flex items-start hover:bg-[#F5F6FC] mb-6 group">
-          <div className="h-full flex-grow">
-            <div className="flex items-center">
-              <h1 className="title-font text-md font-bold text-gray-600 hover:text-black mb-3">{industry}</h1>
-             
             </div>
           </div>
         </div>
-      ))}
-    </section>
-  </div>
-)}
+      )}
 
+      {showSolutions && (
+        <div
+        style={{
+          background: 'linear-gradient(to bottom right, #881ccb ,black , #34b0cb,#34b0cb )'
+        }}
+        
+          className="bg-white border-b-2 hidden md:flex md:justify-evenly md:px-8 lg:px-12 xl:px-24 py-4"
+          onMouseLeave={() => setShowSolutions(false)}
+        >
+          <div
+            className="text-gray-600 body-font mt-0 flex flex-wrap justify-center"
+            style={{ width: "80%", maxHeight: "515px",  }}
+          >
+            <div className="flex items-start w-full md:w-1/3 relative">
+              <div className="h-full flex-grow">
+                <div className="hover:bg-[rgb(157,164,207)] hover:rounded-lg w-[120px] h-[42px] m-4 ">
+                  <div className="flex items-center ml-5">
+                    <h1 className="title-font text-md font-bold text-white hover:text-black mr-2 mt-2">
+                      Solutions
+                    </h1>
+                  </div>
+                </div>
+                <div className="hover:bg-[#9da4cf] hover:rounded-lg w-[120px] h-[42px] m-4 ">
+                  <div className="flex items-center ml-5">
+                    <h1 className="title-font text-md font-bold text-white hover:text-black  mr-2 mt-2">
+                      Industries
+                    </h1>
+                  </div>
+                </div>
 
+                <div className="hover:bg-[#9da4cf] hover:rounded-lg w-[120px] h-[42px] m-4 ">
+                  <div className="flex items-center ml-5">
+                    <div className="flex items-center">
+                      <h1 className="title-font text-md font-bold text-white hover:text-black mr-2 mt-2">
+                        Case Study
+                      </h1>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="absolute h-full w-px bg-gray-200 top-0 right-0"></div>{" "}
+              {/* Vertical Line */}
+            </div>
+            <div className="py-4 px-4 flex items-start w-full md:w-1/3 relative">
+              <div className="h-full flex-grow flex flex-col">
+                <div className=" text-white">Chatbot Devlopment</div>
+                <div className=" text-white mt-6">Chatbot Devlopment</div>
+                <div className=" text-white mt-6">Voice bot Solutions</div>
+                <div className=" text-white mt-6">Language Model Tuning</div>
+                <div className=" text-white mt-6">Custom GPT Applications</div>
+                <div className=" text-white mt-6">Algorithm Development</div>
+                <div className=" text-white mt-6">Retrieval-Augmented Generation</div>
+                <div className=" text-white mt-6">Machine Learning Deployment</div>
+                <div className=" text-white mt-6">Natural Language Processing</div>
+              </div>
+              {/* <div className="absolute h-full w-px bg-gray-200 top-0 right-0"></div>{" "}
+              Vertical Line */}
+            </div>
+            <div className=" mt-[15px] ml-[10px] h-full flex-grow flex flex-col">
+              <div className=" text-white">Supply Chain AI</div>
+              <div className=" text-white mt-6">Market Research AI</div>
+              <div className=" text-white mt-6">AI for Sustainability</div>
+              <div className=" text-white mt-6">Prompt Engineering</div>
+              <div className=" text-white mt-6">Predictive Analytics</div>
+              <div className=" text-white mt-6">Financial Forecasting</div>
+              <div className=" text-white mt-6">Business Automation</div>
+            </div>
+          </div>
+          <div className=" mt-[15px] h-full flex-grow flex flex-col">
+            <div className="text-white" >AI Training</div>
+            <div className="text-white mt-6">Ethical AI</div>
+            <div className="text-white mt-6">Data Mining</div>
+            <div className="text-white mt-6">Healthcare AI</div>
+          </div>
+        </div>
+      )}
 
+      {/* Industries Section */}
+      {showIndustries && (
+        <div
+          className="bg-white border-b-2 hidden md:flex md:flex-wrap md:justify-evenly md:px-8 lg:px-12 xl:px-24"
+          onMouseLeave={() => setShowIndustries(false)}
+        >
+          <section className="text-gray-600 body-font mt-0 grid grid-cols-3 gap-x-40 gap-y-0 justify-center">
+            {[
+              "Fintech",
+              "Chemical",
+              "SaaS",
+              "Edtech",
+              "Health",
+              "Commerce",
+              "Security",
+              "Blockchain",
+              "Gaming",
+              "Agritech",
+              "Proptech",
+              "Insurtech",
+              "Biotech",
+              "Cleantech",
+              "Mobility",
+              "Foodtech",
+              "Medtech",
+              "Legaltech",
+            ].map((industry, index) => (
+              <div
+                key={index}
+                className="py-1 px-4 flex items-start hover:bg-[#F5F6FC] mb-6 group"
+              >
+                <div className="h-full flex-grow">
+                  <div className="flex items-center">
+                    <h1 className="title-font text-md font-bold text-gray-600 hover:text-black mb-3">
+                      {industry}
+                    </h1>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </section>
+        </div>
+      )}
 
-
-            {/* About Us Section */}
-            {showAboutUs && (
-    <div className="bg-white border-b-2 hidden md:flex md:justify-evenly md:px-8 lg:px-12 xl:px-24" onMouseLeave={() => setShowAboutUs(false)}>
-       
-        <section className="text-gray-600 body-font mt-0">
+      {/* About Us Section */}
+      {showAboutUs && (
+        <div
+          className="bg-white border-b-2 hidden md:flex md:justify-evenly md:px-8 lg:px-12 xl:px-24"
+          onMouseLeave={() => setShowAboutUs(false)}
+        >
+          <section className="text-gray-600 body-font mt-0">
             <div className="container px-5 py-12 mx-auto">
-                <div className="flex flex-wrap items-start justify-center -mx-8 -my-8">
+              <div className="flex flex-wrap items-start justify-center -mx-8 -my-8">
                 {/* <div className="py-8 px-8  flex items-start justify-center" style={{ marginLeft: '1rem', padding: '2rem', maxWidth: '400px', borderRadius: '8px' }} onMouseEnter={() => toggleAboutUs('Our core principles and beliefs')}>
                         <div className="h-full flex-grow">
                             <div className="flex hover:bg-[#F5F6FC]  mb-6 group items-center">
@@ -375,29 +369,43 @@ export default function Navbar() {
                             </div>
                         </div>
                     </div> */}
-                    <div className="py-8 px-8 flex items-start justify-center" style={{ marginLeft: '1rem', padding: '2rem', maxWidth: '400px', borderRadius: '8px' }} onMouseEnter={() => toggleAboutUs('Our core principles and beliefs')}>
-      <div className="h-full flex-grow">
-        <div className="flex hover:bg-[#F5F6FC] mb-6 group items-center">
-          <Link href="/aboutus" className="title-font text-md font-bold text-gray-600 hover:text-black mb-3" style={{ marginRight: '10px' }}>
-            Our core principles and beliefs
-          </Link>
-          <Image
-    src="/images/rightarrow.png"
-    alt="Arrow"
-    width={20}
-    height={20}
-    style={{ transition: 'transform 0.1s' }}
-    className='group-hover:translate-x-1'
-/>
-
-        </div>
-      </div>
-    </div>
+                <div
+                  className="py-8 px-8 flex items-start justify-center"
+                  style={{
+                    marginLeft: "1rem",
+                    padding: "2rem",
+                    maxWidth: "400px",
+                    borderRadius: "8px",
+                  }}
+                  onMouseEnter={() =>
+                    toggleAboutUs("Our core principles and beliefs")
+                  }
+                >
+                  <div className="h-full flex-grow">
+                    <div className="flex hover:bg-[#F5F6FC] mb-6 group items-center">
+                      <a
+                        href="/aboutus"
+                        className="title-font text-md font-bold text-gray-600 hover:text-black mb-3"
+                        style={{ marginRight: "10px" }}
+                      >
+                        Our core principles and beliefs
+                      </a>
+                      <img
+                        src="/images/rightarrow.png"
+                        alt="Arrow"
+                        width={20}
+                        height={20}
+                        style={{ transition: "transform 0.1s" }}
+                        className="group-hover:translate-x-1"
+                      />
+                    </div>
+                  </div>
                 </div>
+              </div>
             </div>
-        </section>
-    </div>
-)}
+          </section>
         </div>
-    );
+      )}
+    </div>
+  );
 }
